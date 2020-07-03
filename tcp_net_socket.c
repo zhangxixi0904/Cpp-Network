@@ -28,7 +28,8 @@ int tcp_init(const char* ip, int port){
 	//ip要用inet_addr()将点分十进制字符串转为网络字节序整数表示的IP地址，端口号则用htons()转换
 	serveraddr.sin_family = AF_INET;
     serveraddr.sin_port = htons(port);
-    serveraddr.sin_addr.s_addr = inet_addr(ip);//或INADDR_ANY
+    // serveraddr.sin_addr.s_addr = INADDR_ANY; 
+    serveraddr.sin_addr.s_addr = inet_addr(ip);
 
     //第三步：命名socket（将第一步创建的socket与第二步定义地址绑定)
     //地址均要强制转换为struct sockaddr格式，这三个参数基本只要按需要改动&serveraddr即可
@@ -107,6 +108,7 @@ int tcp_connect(const char* ip, int port)
     bzero(&serveraddr, sizeof(serveraddr));
     serveraddr.sin_family = AF_INET;
     serveraddr.sin_port = htons(port);
+    // serveraddr.sin_addr.s_addr = INADDR_ANY; // inet_addr(ip);
     serveraddr.sin_addr.s_addr = inet_addr(ip);
 
     //将sfd连接至制定的服务器网络地址serveraddr

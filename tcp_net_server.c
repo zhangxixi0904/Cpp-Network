@@ -9,8 +9,8 @@ int main(int argc, char* argv[]){
 	
 	}
 
-	signalhandler();
-
+	//signalhandler();
+	
 	int sfd = tcp_init(argv[1], atoi(argv[2]));  //或int sfd = tcp_init("192.168.0.164", 8888);
 
 	//用while循环表示可以与多个客户端接收和发送，但仍是阻塞模式的
